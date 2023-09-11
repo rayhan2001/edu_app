@@ -10,6 +10,7 @@
     <link rel=icon href="{{asset('frontendAsset')}}/img/favicon.png" sizes="20x20" type="image/png">
 
     <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{asset('frontendAsset')}}/toastr/toastr.min.css">
     <link rel="stylesheet" href="{{asset('frontendAsset')}}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('frontendAsset')}}/css/fontawesome.min.css">
     <link rel="stylesheet" href="{{asset('frontendAsset')}}/css/flaticon.min.css">
@@ -50,6 +51,7 @@
 <!-- back to top area end -->
 
 <!-- all plugins here -->
+<script src="{{asset('frontendAsset')}}/toastr/toastr.min.js"></script>
 <script src="{{asset('frontendAsset')}}/js/jquery.min.js"></script>
 <script src="{{asset('frontendAsset')}}/js/bootstrap.min.js"></script>
 <script src="{{asset('frontendAsset')}}/js/nice-select.min.js"></script>

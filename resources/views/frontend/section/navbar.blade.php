@@ -8,7 +8,7 @@
             </button>
         </div>
         <div class="logo">
-            <a href="index.html"><img src="{{asset('frontendAsset')}}/img/logos/logo.png" alt="img"></a>
+            <a href="{{route('home')}}"><img src="{{asset('frontendAsset')}}/img/logos/logo.png" alt="img"></a>
         </div>
         <div class="nav-right-part nav-right-part-mobile">
             <a class="search-bar-btn" href="#">
@@ -17,57 +17,32 @@
         </div>
         <div class="collapse navbar-collapse" id="Iitechie_main_menu">
             <ul class="navbar-nav menu-open text-lg-end">
-                <li class="menu-item-has-children">
-                    <a href="#">Home</a>
-                    <ul class="sub-menu">
-                        <li><a href="index.html">Home One</a></li>
-                        <li><a href="index2.html">Home Two</a></li>
-                        <li><a href="index3.html">Home Three</a></li>
-                    </ul>
+                <li>
+                    <a href="{{route('home')}}">Home</a>
+                </li>
+                <li>
+                    <a href="#">About Us</a>
+                </li>
+                <li>
+                    <a href="#">Event & Programmer</a>
+                </li>
+                <li>
+                    <a href="{{ route('membership.index') }}">Membership</a>
                 </li>
                 <li class="menu-item-has-children">
-                    <a href="#">Causes</a>
+                    <a href="#">Resource</a>
                     <ul class="sub-menu">
-                        <li><a href="causes.html">Causes</a></li>
-                        <li><a href="causes-slider.html">Causes Slider</a></li>
-                        <li><a href="cause-details.html">Causes Details</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Notice</a></li>
+                        <li><a href="#">Upcoming Event</a></li>
+                        <li><a href="#">Previous Event</a></li>
                     </ul>
                 </li>
-                <li class="menu-item-has-children">
-                    <a href="#">Events</a>
-                    <ul class="sub-menu">
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="events-slider.html">Event Slider</a></li>
-                        <li><a href="event-details.html">Event Details</a></li>
-                    </ul>
+                <li>
+                    <a href="#">Gallery</a>
                 </li>
-                <li class="menu-item-has-children">
-                    <a href="#">Portfolio</a>
-                    <ul class="sub-menu">
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="portfolio-details.html">Portfolio Details</a></li>
-                        <li><a href="donate.html">Donate</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="#">Pages</a>
-                    <ul class="sub-menu">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="volunteers.html">Volunteers</a></li>
-                        <li><a href="become-volunteers.html">Become Volunteer</a></li>
-                        <li><a href="faqs.html">FAQ Page</a></li>
-                        <li><a href="404.html">404 Error</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children">
-                    <a href="#">Blog</a>
-                    <ul class="sub-menu">
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="blog-clasic.html">Blog Clasic</a></li>
-                        <li><a href="blog-slider.html">Blog Slider</a></li>
-                        <li><a href="blog-details.html">Blog Details</a></li>
-                    </ul>
+                <li>
+                    <a href="#">Contact Us</a>
                 </li>
             </ul>
         </div>

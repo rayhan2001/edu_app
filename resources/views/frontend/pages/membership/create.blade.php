@@ -3,6 +3,7 @@
     Membership
 @endsection
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <!-- page banner start -->
     <div class="page-banner-area bgs-cover overlay text-white py-165 rpy-125 rmt-65"
          style="background-image: url({{asset('frontendAsset')}}/img/background/page-banner.jpg);">
@@ -25,7 +26,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card p-3 shadow-sm rounded" style="border: none;">
-                    <div class="form">
+                    <form method="post" id="membershipForm">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -152,12 +153,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <script src="{{asset('frontendAsset')}}/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $('#submit-button').click(function(e){
             e.preventDefault();
@@ -192,6 +194,7 @@
                 data: data,
                 dataType: "json",
                 success: function (response) {
+                    $('#membershipForm')[0].reset();
                     toastr.success('Membership Request Send Successfully');
                     window.location.reload();
                     $('#submit-button').attr("disabled", false);
@@ -265,6 +268,5 @@
                 }
             });
         });
-
     </script>
 @endsection

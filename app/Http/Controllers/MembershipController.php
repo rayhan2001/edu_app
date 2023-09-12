@@ -14,7 +14,8 @@ class MembershipController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.membership.index');
+        $memberships = Membership::all();
+        return view('admin.membership.index',compact('memberships'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MembershipController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.pages.membership.create');
     }
 
     /**
@@ -38,18 +39,18 @@ class MembershipController extends Controller
         $validator = $request->validate([
             'name' => 'required',
             'full_name' => 'required',
-            'ssc_passing_year' => 'required|numeric|min:4',
+            'ssc_passing_year' => 'required|numeric|digits:4',
             'professor_designation' => 'required',
             'place_work' => 'required',
-            'mobile_no' => 'required|numeric|min:11',
+            'mobile_no' => 'required|numeric|digits:11',
             'present_address' => 'required',
             'permanent_address' => 'required',
-            'birthday' => 'required',
-            'nid' => 'required|numeric|min:8',
+            'birthday' => 'required|date',
+            'nid' => 'required|numeric|digits:8',
             'transaction_id' => 'required',
             'transaction_number' => 'required',
             'blood_group' => 'required',
-            'account_number' => 'required|numeric|min:11',
+            'account_number' => 'required|numeric|digits:11',
             'email' => 'required|email',
         ]);
 
@@ -82,7 +83,7 @@ class MembershipController extends Controller
      */
     public function show($id)
     {
-        //
+//
     }
 
     /**
@@ -116,6 +117,27 @@ class MembershipController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $membership = Membership::find($id);
+        $membership->delete();
+
+        return response()->json([
+            'status'=>200
+        ]);
+    }
+
+    public function membershipAction(Request $request){
+        $id = $request->input('id');
+        $action = $request->input('action');
+
+        if ($action === 'approve') {
+            $membership = Membership::where('id',$id)->first();
+            $membership->status = 1;
+        } elseif ($action === 'deny') {
+            $membership = Membership::where('id',$id)->first();
+            $membership->status = 2;
+        }
+        $membership->save();
+
+        return response()->json(['status' => 200, 'action' => $action]);
     }
 }

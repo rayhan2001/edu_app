@@ -9,8 +9,9 @@
     <title>@yield('title')</title>
     <link rel=icon href="{{asset('frontendAsset')}}/img/favicon.png" sizes="20x20" type="image/png">
 
+    <!-- Toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{{asset('frontendAsset')}}/toastr/toastr.min.css">
     <link rel="stylesheet" href="{{asset('frontendAsset')}}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('frontendAsset')}}/css/fontawesome.min.css">
     <link rel="stylesheet" href="{{asset('frontendAsset')}}/css/flaticon.min.css">
@@ -50,8 +51,9 @@
 </div>
 <!-- back to top area end -->
 
+<!-- toastr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!-- all plugins here -->
-<script src="{{asset('frontendAsset')}}/toastr/toastr.min.js"></script>
 <script src="{{asset('frontendAsset')}}/js/jquery.min.js"></script>
 <script src="{{asset('frontendAsset')}}/js/bootstrap.min.js"></script>
 <script src="{{asset('frontendAsset')}}/js/nice-select.min.js"></script>

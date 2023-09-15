@@ -14,7 +14,8 @@ class MembershipController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.membership.index');
+        $memberships = Membership::all();
+        return view('admin.membership.index',compact('memberships'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MembershipController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.pages.membership.create');
     }
 
     /**
@@ -35,22 +36,24 @@ class MembershipController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $validator = $request->validate([
             'name' => 'required',
             'full_name' => 'required',
-            'ssc_passing_year' => 'required|numeric|min:4',
+            'ssc_passing_year' => 'required|numeric|digits:4',
             'professor_designation' => 'required',
             'place_work' => 'required',
-            'mobile_no' => 'required|numeric|min:11',
+            'mobile_no' => 'required|numeric|digits:11',
             'present_address' => 'required',
             'permanent_address' => 'required',
-            'birthday' => 'required',
-            'nid' => 'required|numeric|min:8',
+            'birthday' => 'required|date',
+            'nid' => 'required|numeric|digits:8',
             'transaction_id' => 'required',
             'transaction_number' => 'required',
             'blood_group' => 'required',
-            'account_number' => 'required|numeric|min:11',
+            'account_number' => 'required|numeric|digits:11',
             'email' => 'required|email',
+            'image' => 'required|mimes:jpg,jpeg,png',
         ]);
 
         $membership = new Membership();
@@ -69,9 +72,19 @@ class MembershipController extends Controller
         $membership->blood_group = $request->blood_group;
         $membership->account_number = $request->account_number;
         $membership->email = $request->email;
+        $membership->image = $this->saveImage($request);
         $membership->save();
 
         return response()->json(['status'=>200]);
+    }
+
+    public function saveImage(Request $request){
+        $image =$request->file('image');
+        $imageName =rand().'.'.$image->getClientOriginalExtension();
+        $path ='upload/member/';
+        $imageUrl = $path.$imageName;
+        $image->move($path,$imageName);
+        return $imageUrl;
     }
 
     /**
@@ -93,7 +106,8 @@ class MembershipController extends Controller
      */
     public function edit($id)
     {
-        //
+        $membership = Membership::find($id);
+        return view('admin.membership.edit',compact('membership'));
     }
 
     /**
@@ -105,7 +119,46 @@ class MembershipController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        dd($request->all());
+        $validator = $request->validate([
+            'name' => 'required',
+            'full_name' => 'required',
+            'ssc_passing_year' => 'required|numeric|digits:4',
+            'professor_designation' => 'required',
+            'place_work' => 'required',
+            'mobile_no' => 'required|numeric|digits:11',
+            'present_address' => 'required',
+            'permanent_address' => 'required',
+            'birthday' => 'required|date',
+            'nid' => 'required|numeric|digits:8',
+            'transaction_id' => 'required',
+            'transaction_number' => 'required',
+            'blood_group' => 'required',
+            'account_number' => 'required|numeric|digits:11',
+            'email' => 'required|email',
+            'image' => 'required|mimes:jpg,jpeg,png',
+        ]);
+
+        $membership = Membership::find($id);
+        $membership->name = $request->name;
+        $membership->full_name = $request->full_name;
+        $membership->ssc_passing_year = $request->ssc_passing_year;
+        $membership->professor_designation = $request->professor_designation;
+        $membership->place_work = $request->place_work;
+        $membership->mobile_no = $request->mobile_no;
+        $membership->present_address = $request->present_address;
+        $membership->permanent_address = $request->permanent_address;
+        $membership->birthday = $request->birthday;
+        $membership->nid = $request->nid;
+        $membership->transaction_id = $request->transaction_id;
+        $membership->transaction_number = $request->transaction_number;
+        $membership->blood_group = $request->blood_group;
+        $membership->account_number = $request->account_number;
+        $membership->email = $request->email;
+        $membership->image = $this->saveImage($request);
+        $membership->save();
+
+        return response()->json(['status'=>200]);
     }
 
     /**
@@ -116,6 +169,30 @@ class MembershipController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $membership = Membership::find($id);
+        if ($membership->image){
+            unlink($membership->image);
+        }
+        $membership->delete();
+
+        return response()->json([
+            'status'=>200
+        ]);
+    }
+
+    public function membershipAction(Request $request){
+        $id = $request->input('id');
+        $action = $request->input('action');
+
+        if ($action === 'approve') {
+            $membership = Membership::where('id',$id)->first();
+            $membership->status = 1;
+        } elseif ($action === 'deny') {
+            $membership = Membership::where('id',$id)->first();
+            $membership->status = 2;
+        }
+        $membership->save();
+
+        return response()->json(['status' => 200, 'action' => $action]);
     }
 }

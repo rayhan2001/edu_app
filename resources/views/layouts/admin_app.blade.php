@@ -14,10 +14,14 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('adminAsset')}}/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <!-- Sweetalert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('adminAsset')}}/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('adminAsset')}}/vendors/css/charts/apexcharts.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('adminAsset')}}/vendors/css/extensions/toastr.min.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -80,7 +84,6 @@
 
 <!-- BEGIN: Page Vendor JS-->
 <script src="{{asset('adminAsset')}}/vendors/js/charts/apexcharts.min.js"></script>
-<script src="{{asset('adminAsset')}}/vendors/js/extensions/toastr.min.js"></script>
 <!-- END: Page Vendor JS-->
 
 <!-- BEGIN: Theme JS-->
@@ -91,6 +94,9 @@
 <!-- BEGIN: Page JS-->
 <script src="{{asset('adminAsset')}}/js/scripts/pages/dashboard-ecommerce.js"></script>
 <!-- END: Page JS-->
+
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
 
 <script>
     $(window).on('load', function() {

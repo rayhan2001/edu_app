@@ -27,7 +27,7 @@
                     <a href="#">Event & Programmer</a>
                 </li>
                 <li>
-                    <a href="{{ route('membership.index') }}">Membership</a>
+                    <a href="{{ route('membership.create') }}">Membership</a>
                 </li>
                 <li class="menu-item-has-children">
                     <a href="#">Resource</a>

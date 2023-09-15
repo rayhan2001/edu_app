@@ -3,6 +3,7 @@
     Membership
 @endsection
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <!-- page banner start -->
     <div class="page-banner-area bgs-cover overlay text-white py-165 rpy-125 rmt-65"
          style="background-image: url({{asset('frontendAsset')}}/img/background/page-banner.jpg);">
@@ -25,7 +26,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card p-3 shadow-sm rounded" style="border: none;">
-                    <div class="form">
+                    <form method="post" id="membershipForm" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -107,21 +109,30 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="transaction_id">Transaction Id</label>
                                     <input type="text" id="transaction_id" name="transaction_id" class="form-control" placeholder="Transaction Id">
                                     <span id="transaction_id_error" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="transaction_number">Transaction Number</label>
                                     <input type="number" id="transaction_number" name="transaction_number" class="form-control" placeholder="Transaction Number">
                                     <span id="transaction_number_error" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="blood_group">Image</label>
+                                    <input type="file" id="image" name="image" class="form-control" required>
+                                    <span id="image_error" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="blood_group">Blood Group</label>
                                     <input type="text" id="blood_group" name="blood_group" class="form-control" placeholder="Blood Group">
@@ -152,35 +163,39 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <script src="{{asset('frontendAsset')}}/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $('#submit-button').click(function(e){
             e.preventDefault();
             $('#submit-button').attr("disabled", true);
             $('#submit-button').html("Processing...");
-            var data= {
-                '_token': "{{ csrf_token() }}",
-                'name': document.getElementById("name").value,
-                'full_name': document.getElementById("full_name").value,
-                'ssc_passing_year': document.getElementById("ssc_passing_year").value,
-                'professor_designation': document.getElementById("professor_designation").value,
-                'place_work': document.getElementById("place_work").value,
-                'mobile_no': document.getElementById("mobile_no").value,
-                'present_address': document.getElementById("present_address").value,
-                'permanent_address': document.getElementById("permanent_address").value,
-                'birthday': document.getElementById("birthday").value,
-                'nid': document.getElementById("nid").value,
-                'transaction_id': document.getElementById("transaction_id").value,
-                'transaction_number': document.getElementById("transaction_number").value,
-                'blood_group': document.getElementById("blood_group").value,
-                'account_number': document.getElementById("account_number").value,
-                'email': document.getElementById("email").value,
-            }
+
+            var data = new FormData();
+            data.append('_token', "{{ csrf_token() }}");
+            data.append('name', document.getElementById("name").value);
+            data.append('full_name', document.getElementById("full_name").value);
+            data.append('image', $('input[type=file]')[0].files[0]);
+            data.append('full_name', document.getElementById("full_name").value);
+            data.append('ssc_passing_year', document.getElementById("ssc_passing_year").value);
+            data.append('professor_designation', document.getElementById("professor_designation").value);
+            data.append('place_work', document.getElementById("place_work").value);
+            data.append('mobile_no', document.getElementById("mobile_no").value);
+            data.append('present_address', document.getElementById("present_address").value);
+            data.append('permanent_address', document.getElementById("permanent_address").value);
+            data.append('birthday', document.getElementById("birthday").value);
+            data.append('nid', document.getElementById("nid").value);
+            data.append('transaction_id', document.getElementById("transaction_id").value);
+            data.append('transaction_number', document.getElementById("transaction_number").value);
+            data.append('blood_group', document.getElementById("blood_group").value);
+            data.append('account_number', document.getElementById("account_number").value);
+            data.append('email', document.getElementById("email").value);
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -190,8 +205,12 @@
                 type: "POST",
                 url: "{{route('membership.store')}}",
                 data: data,
-                dataType: "json",
+                mimeType: 'multipart/form-data',
+                contentType: false,
+                cache: false,
+                processData: false,
                 success: function (response) {
+                    $('#membershipForm')[0].reset();
                     toastr.success('Membership Request Send Successfully');
                     window.location.reload();
                     $('#submit-button').attr("disabled", false);
@@ -259,12 +278,15 @@
                         $('#email_error').text(error.responseJSON.errors.email);
                     }else{
                         $('#email_error').text('');
+                    }if(error.responseJSON.errors.image){
+                        $('#image_error').text(error.responseJSON.errors.image);
+                    }else{
+                        $('#image_error').text('');
                     }
                     $('#submit-button').attr("disabled", false);
                     $('#submit-button').html("Submit");
                 }
             });
         });
-
     </script>
 @endsection

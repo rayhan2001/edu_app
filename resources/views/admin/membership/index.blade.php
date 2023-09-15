@@ -17,6 +17,7 @@
                         <tr>
                             <th scope="col">Sl</th>
                             <th scope="col">Full Name</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Professor Designation</th>
                             <th scope="col">Mobile No</th>
                             <th scope="col">NID Number</th>
@@ -30,6 +31,13 @@
                             <tr>
                                 <td class="serial-number">{{ $loop->iteration }}</td>
                                 <td>{{$membership->full_name}}</td>
+                                <td>
+                                    @if($membership->image !=null)
+                                    <img src="{{asset($membership->image)}}" alt="" class="rounded-circle" width="50" height="50">
+                                    @else
+                                    <img src="{{asset('adminAsset')}}/images/avatars/00.png" alt="" class="rounded-circle" width="50" height="50">
+                                    @endif
+                                </td>
                                 <td>{{$membership->professor_designation}}</td>
                                 <td>{{$membership->mobile_no}}</td>
                                 <td>{{$membership->nid}}</td>
@@ -37,8 +45,11 @@
                                 <td>{{$membership->email}}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="#" class="btn btn-sm btn-primary mr-2" data-toggle="modal" data-target="#membershipModal{{$membership->id}}">
+                                        <a href="#" class="btn btn-sm btn-primary " data-toggle="modal" data-target="#membershipModal{{$membership->id}}">
                                             <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="{{route('membership.edit',$membership->id)}}" class="btn btn-sm btn-success mx-1">
+                                            <i class="bi bi-pencil-square"></i>
                                         </a>
                                         <a href="#" class="btn btn-sm btn-danger remove-membership" data-id="{{ $membership->id }}"><i class="bi bi-trash"></i></a>
                                     </div>
@@ -67,8 +78,7 @@
                 var id = $(this).data('id');
                 var url = '{{ route("membership.destroy", ":id") }}';
                 url = url.replace(':id', id);
-                var rowToRemove = $(this).closest('tr'); 
-
+                var rowToRemove = $(this).closest('tr');
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to delete this member!",
@@ -95,7 +105,6 @@
                                         icon: 'success',
                                     }).then(function () {
                                         rowToRemove.remove();
-
                                         updateSerialNumbers();
                                     });
                                 }
@@ -111,7 +120,6 @@
                     }
                 });
             });
-
             function updateSerialNumbers() {
                 $('.serial-number').each(function(index) {
                     $(this).text(index + 1);
@@ -123,19 +131,16 @@
         $('.actionBtn').click(function(e){
             var action = $(this).data("action");
             var dataId = $(this).attr("data-id");
-
             var data = {
                 '_token': "{{ csrf_token() }}",
                 'id': dataId,
                 'action': action,
             };
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             $.ajax({
                 type: "POST",
                 url: "{{ route('membership.action') }}",

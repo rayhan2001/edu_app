@@ -19,7 +19,6 @@ use App\Http\Controllers\MembershipController;
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::resource('membership',MembershipController::class);
 Route::post('membership-action',[MembershipController::class,'membershipAction'])->name('membership.action');
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

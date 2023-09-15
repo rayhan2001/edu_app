@@ -39,7 +39,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Gallery</a>
+                    <a href="{{route('gallery')}}">Gallery</a>
                 </li>
                 <li>
                     <a href="#">Contact Us</a>

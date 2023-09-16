@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
 use App\Models\Membership;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class MembershipController extends Controller
@@ -25,7 +27,9 @@ class MembershipController extends Controller
      */
     public function create()
     {
-        return view('frontend.pages.membership.create');
+        $setting = Setting::orderBy('id', 'desc')->first();
+        $galleries = Gallery::all();
+        return view('frontend.pages.membership.create',compact('setting','galleries'));
     }
 
     /**

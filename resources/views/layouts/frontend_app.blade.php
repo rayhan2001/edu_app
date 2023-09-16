@@ -28,9 +28,6 @@
 @include('frontend.section.preloader')
 <!-- preloader area end -->
 
-<!-- search popup start-->
-@include('frontend.section.search')
-<!-- search popup end-->
 <div class="body-overlay" id="body-overlay"></div>
 
 <!-- navbar start -->

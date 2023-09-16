@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use function Symfony\Component\Mime\Header\all;
 
@@ -17,8 +18,8 @@ class GalleryController extends Controller
     public function galleryFrontendView()
     {
         $galleries = Gallery::all();
-        $single_galley = Gallery::where('id','desc')->first();
-        return view('frontend.pages.gallery.gallery',compact('galleries'));
+        $setting = Setting::orderBy('id', 'desc')->first();
+        return view('frontend.pages.gallery.gallery',compact('galleries','setting'));
     }
 
 
@@ -48,23 +49,13 @@ class GalleryController extends Controller
     {
         $validator = $request->validate([
             'image' => 'required|mimes:jpg,jpeg,png',
-            'video' => 'required|mimes:mp4',
+            'video_link' => 'required|url',
             'title' => 'required',
-            'status' => 'required',
-            'choose_us' => 'required',
-            'mission' => 'required',
-            'vission' => 'required',
-            'company_velu' => 'required',
         ]);
         $gallery = new Gallery();
         $gallery->image = $this->saveImage($request);
-        $gallery->video = $this->saveVideo($request);
+        $gallery->video_link = $request->video_link;
         $gallery->title = $request->title;
-        $gallery->status = $request->status;
-        $gallery->choose_us = $request->choose_us;
-        $gallery->mission = $request->mission;
-        $gallery->vission = $request->vission;
-        $gallery->company_velu = $request->company_velu;
         $gallery->save();
 
         return redirect(route('gallery.index'));
@@ -72,15 +63,7 @@ class GalleryController extends Controller
     public function saveImage(Request $request){
         $image =$request->file('image');
         $imageName =rand().'.'.$image->getClientOriginalExtension();
-        $path ='upload/gallery/image/';
-        $imageUrl = $path.$imageName;
-        $image->move($path,$imageName);
-        return $imageUrl;
-    }
-    public function saveVideo(Request $request){
-        $image =$request->file('video');
-        $imageName =rand().'.'.$image->getClientOriginalExtension();
-        $path ='upload/gallery/video/';
+        $path ='upload/gallery/';
         $imageUrl = $path.$imageName;
         $image->move($path,$imageName);
         return $imageUrl;
@@ -105,7 +88,8 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $gallery = Gallery::find($id);
+        return view('admin.gallery.edit',compact('gallery'));
     }
 
     /**
@@ -117,7 +101,18 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = $request->validate([
+            'image' => 'required|mimes:jpg,jpeg,png',
+            'video_link' => 'required|url',
+            'title' => 'required',
+        ]);
+        $gallery = Gallery::find($id);
+        $gallery->image = $this->saveImage($request);
+        $gallery->video_link = $request->video_link;
+        $gallery->title = $request->title;
+        $gallery->save();
+
+        return redirect(route('gallery.index'));
     }
 
     /**
@@ -131,9 +126,6 @@ class GalleryController extends Controller
         $gallery = Gallery::find($id);
         if ($gallery->image){
             unlink($gallery->image);
-        }
-        if ($gallery->video){
-            unlink($gallery->video);
         }
         $gallery->delete();
 

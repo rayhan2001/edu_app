@@ -24,11 +24,7 @@
                             <th scope="col">Sl</th>
                             <th scope="col">Image</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Why Choose Us</th>
-                            <th scope="col">Mission</th>
-                            <th scope="col">Vission</th>
-                            <th scope="col">Company Velu</th>
+                            <th scope="col">Video Link</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -44,24 +40,7 @@
                                     @endif
                                 </td>
                                 <td>{{$gallery->title}}</td>
-                                <td>
-                                    @if($gallery->status==1)
-                                        <p>Homeless</p>
-                                    @endif
-                                    @if($gallery->status==2)
-                                        <p>Clean Water</p>
-                                    @endif
-                                    @if($gallery->status==3)
-                                        <p>Education</p>
-                                    @endif
-                                    @if($gallery->status==4)
-                                        <p>Food & Health</p>
-                                    @endif
-                                </td>
-                                <td>{{ substr($gallery->choose_us,0,50)}}</td>
-                                <td>{{ substr($gallery->mission,0,50)}}</td>
-                                <td>{{ substr($gallery->vission,0,50)}}</td>
-                                <td>{{ substr($gallery->company_velu,0,50)}}</td>
+                                <td>{{ substr($gallery->video_link,0,50)}}</td>
                                 <td>
                                     <div class="d-flex">
                                         <a href="{{route('gallery.edit',$gallery->id)}}" class="btn btn-sm btn-primary mr-1">

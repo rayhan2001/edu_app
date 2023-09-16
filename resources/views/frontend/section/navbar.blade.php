@@ -8,7 +8,7 @@
             </button>
         </div>
         <div class="logo">
-            <a href="{{route('home')}}"><img src="{{asset('frontendAsset')}}/img/logos/logo.png" alt="img"></a>
+            <a href="{{route('home')}}"><img src="{{asset($setting->logo)}}" alt="img"></a>
         </div>
         <div class="nav-right-part nav-right-part-mobile">
             <a class="search-bar-btn" href="#">
@@ -45,17 +45,6 @@
                     <a href="#">Contact Us</a>
                 </li>
             </ul>
-        </div>
-        <div class="nav-right-part nav-right-part-desktop">
-            <a class="search-bar-btn" href="#">
-                <i class="flaticon-magnifying-glass"></i>
-            </a>
-            <div class="dropdown">
-                <a class="dropdown-toggle" href="#">
-                    <i class="flaticon-user-1"></i>
-                </a>
-            </div>
-            <a class="btn btn--style-two" href="donate.html">Donate Now</a>
         </div>
     </div>
 </nav>

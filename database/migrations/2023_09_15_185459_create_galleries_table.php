@@ -16,13 +16,8 @@ return new class extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->text('image');
-            $table->text('video');
+            $table->string('video_link');
             $table->string('title');
-            $table->string('status');
-            $table->text('choose_us');
-            $table->text('mission');
-            $table->text('vission');
-            $table->text('company_velu');
             $table->timestamps();
         });
     }

@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Home;
+use App\Models\Contact;
+use App\Models\Gallery;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
-        $home = Home::all();
-        return view('admin.home.index',compact('home'));
+       $contracts = Contact::all();
+       return view('admin.contact.index',compact('contracts'));
     }
 
     /**
@@ -25,7 +29,9 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('admin.home.create');
+        $setting = Setting::orderBy('id', 'desc')->first();
+        $galleries = Gallery::all();
+        return view('frontend.pages.contact.create',compact('setting','galleries'));
     }
 
     /**
@@ -37,27 +43,21 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $validator = $request->validate([
-            'image' => 'required|mimes:jpg,jpeg,png',
-            'title' => 'required',
-            'sub_title' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required|numeric|digits:11',
+            'birth_day' => 'required|date',
+            'message' => 'required',
         ]);
-
-        $home = new Home();
-        $home->title = $request->title;
-        $home->sub_title = $request->sub_title;
-        $home->image = $this->saveImage($request);
-        $home->save();
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone_number = $request->phone_number;
+        $contact->birth_day = $request->birth_day;
+        $contact->message = $request->message;
+        $contact->save();
 
         return response()->json(['status'=>200]);
-    }
-
-    public function saveImage(Request $request){
-        $image =$request->file('image');
-        $imageName =rand().'.'.$image->getClientOriginalExtension();
-        $path ='upload/home-slider/';
-        $imageUrl = $path.$imageName;
-        $image->move($path,$imageName);
-        return $imageUrl;
     }
 
     /**
@@ -79,8 +79,8 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        $home = Home::find($id);
-        return view('admin.home.edit',compact('home'));
+        $contact = Contact::find($id);
+        return view('admin.contact.edit',compact('contact'));
     }
 
     /**
@@ -93,16 +93,19 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         $validator = $request->validate([
-            'image' => 'required|mimes:jpg,jpeg,png',
-            'title' => 'required',
-            'sub_title' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required|numeric|digits:11',
+            'birth_day' => 'required|date',
+            'message' => 'required',
         ]);
-
-        $home = Home::find($id);
-        $home->title = $request->title;
-        $home->sub_title = $request->sub_title;
-        $home->image = $this->saveImage($request);
-        $home->save();
+        $contact = Contact::find($id);
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone_number = $request->phone_number;
+        $contact->birth_day = $request->birth_day;
+        $contact->message = $request->message;
+        $contact->save();
 
         return response()->json(['status'=>200]);
     }
@@ -115,11 +118,8 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        $home = Home::find($id);
-        if ($home->image){
-            unlink($home->image);
-        }
-        $home->delete();
+        $contact = Contact::find($id);
+        $contact->delete();
 
         return response()->json([
             'status'=>200

@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +20,11 @@ use App\Http\Controllers\SettingController;
 |
 */
 
-Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/',[FrontendController::class,'index'])->name('home');
 Route::resource('membership',MembershipController::class);
 Route::post('membership-action',[MembershipController::class,'membershipAction'])->name('membership.action');
 Route::get('gallerys',[GalleryController::class,'galleryFrontendView'])->name('gallery');
+Route::resource('contact',ContactController::class);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -30,4 +33,5 @@ Route::middleware([
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('gallery',GalleryController::class);
     Route::resource('settings',SettingController::class);
+    Route::resource('home',HomeController::class);
 });

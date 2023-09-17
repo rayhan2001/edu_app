@@ -42,7 +42,7 @@
                     <a href="{{route('gallery')}}">Gallery</a>
                 </li>
                 <li>
-                    <a href="#">Contact Us</a>
+                    <a href="{{route('contact.create')}}">Contact Us</a>
                 </li>
             </ul>
         </div>

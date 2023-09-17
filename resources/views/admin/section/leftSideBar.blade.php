@@ -41,6 +41,11 @@
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Pages</span><i data-feather="more-horizontal"></i>
             </li>
             <li class=" nav-item">
+                <a class="d-flex align-items-center" href="{{route('home.index')}}"><i data-feather='home'></i>
+                    <span class="menu-title text-truncate" data-i18n="Home">Home</span>
+                </a>
+            </li>
+            <li class=" nav-item">
                 <a class="d-flex align-items-center" href="{{route('membership.index')}}"><i data-feather='users'></i>
                     <span class="menu-title text-truncate" data-i18n="Membership">Membership</span>
                 </a>
@@ -48,6 +53,11 @@
             <li class=" nav-item">
                 <a class="d-flex align-items-center" href="{{route('gallery.index')}}"><i data-feather='image'></i>
                     <span class="menu-title text-truncate" data-i18n="Gallery">Gallery</span>
+                </a>
+            </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="{{route('contact.index')}}"><i data-feather='phone'></i>
+                    <span class="menu-title text-truncate" data-i18n="Contact">Contact</span>
                 </a>
             </li>
             <li class=" nav-item">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Gallery;
 use App\Models\Home;
 use App\Models\Membership;
@@ -15,6 +16,7 @@ class FrontendController extends Controller
         $home = Home::orderBy('id', 'desc')->first();
         $galleries = Gallery::all();
         $members = Membership::all();
-        return view('frontend.pages.home',compact('home','setting','galleries','members'));
+        $about = About::orderBy('id', 'desc')->first();
+        return view('frontend.pages.home',compact('home', 'about','setting','galleries','members'));
     }
 }

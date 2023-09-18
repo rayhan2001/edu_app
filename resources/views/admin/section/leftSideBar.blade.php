@@ -46,6 +46,11 @@
                 </a>
             </li>
             <li class=" nav-item">
+                <a class="d-flex align-items-center" href="{{route('about.index')}}"><i data-feather='package'></i>
+                    <span class="menu-title text-truncate" data-i18n="About">About</span>
+                </a>
+            </li>
+            <li class=" nav-item">
                 <a class="d-flex align-items-center" href="{{route('membership.index')}}"><i data-feather='users'></i>
                     <span class="menu-title text-truncate" data-i18n="Membership">Membership</span>
                 </a>

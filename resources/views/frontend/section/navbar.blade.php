@@ -8,7 +8,7 @@
             </button>
         </div>
         <div class="logo">
-            <a href="{{route('home')}}"><img src="{{asset($setting->logo)}}" alt="img"></a>
+            <a href="{{route('home')}}"><img src="{{asset($setting->logo ?? '')}}" alt="img"></a>
         </div>
         <div class="nav-right-part nav-right-part-mobile">
             <a class="search-bar-btn" href="#">
@@ -21,7 +21,7 @@
                     <a href="{{route('home')}}">Home</a>
                 </li>
                 <li>
-                    <a href="#">About Us</a>
+                    <a href="#about-section">About Us</a>
                 </li>
                 <li>
                     <a href="#">Event & Programmer</a>

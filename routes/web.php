@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,5 @@ Route::middleware([
     Route::resource('gallery',GalleryController::class);
     Route::resource('settings',SettingController::class);
     Route::resource('home',HomeController::class);
+    Route::resource('about',AboutController::class);
 });

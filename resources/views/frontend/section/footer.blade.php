@@ -5,13 +5,15 @@
                 <div class="widget widget_about">
                     <div class="logo_footer mb-25">
                         <a href="{{route('home')}}">
-                            <img src="{{asset($setting->logo)}}" alt="Logo">
+                            <img src="{{asset($setting->logo ?? '')}}" alt="Logo">
                         </a>
                     </div>
                     <div class="social-style-one pt-20">
+                        @if($setting !=null)
                         <a href="{{$setting->facebook_link}}"><i class="fab fa-facebook-f"></i></a>
                         <a href="{{$setting->twitter_link}}"><i class="fab fa-twitter"></i></a>
                         <a href="{{$setting->linkedin_link}}"><i class="flaticon-linkedin"></i></a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -42,7 +44,7 @@
                     <div class="gallery-photos">
                         @foreach($galleries as $index => $gallery)
                             @if($index < 6)
-                                <img src="{{asset($gallery->image)}}" alt="Gallery" width="80" height="80" class="border m-1">
+                                <img src="{{asset($gallery->image ?? '')}}" alt="Gallery" width="80" height="80" class="border m-1">
                             @endif
                         @endforeach
                     </div>

@@ -210,7 +210,6 @@
                 cache: false,
                 processData: false,
                 success: function (response) {
-                    $('#membershipForm')[0].reset();
                     toastr.success('Membership Request Send Successfully');
                     window.location.reload();
                     $('#submit-button').attr("disabled", false);

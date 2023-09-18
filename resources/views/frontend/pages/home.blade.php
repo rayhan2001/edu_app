@@ -4,11 +4,11 @@
 @endsection
 @section('content')
     <!-- Hero Area start -->
-    <div class="hero-area bgs-cover overlay pt-155 pb-170" style="background-image: url({{asset($home->image)}});">
+    <div class="hero-area bgs-cover overlay pt-155 pb-170" style="background-image: url({{asset($home->image ?? '')}});">
         <div class="container container-1370">
             <div class="hero-content text-center text-white">
-                <h1>{{$home->title}}</h1>
-                <p>{{$home->sub_title}}</p>
+                <h1>{{$home->title ?? ''}}</h1>
+                <p>{{$home->sub_title ?? ''}}</p>
                 <div class="hero-btns pt-30 rpt-10">
                     <a class="btn btn--yellow btn--style-two" href="{{route('contact.index')}}">Contact us</a>
                 </div>
@@ -20,66 +20,16 @@
 
 
     <!-- About area start -->
-    <div class="about-area py-120">
+    <div class="about-area py-100" id="about-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="about-image-part">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="image">
-                                    <img src="{{asset('frontendAsset')}}/img/about/about1.jpg" alt="About">
-                                </div>
-                                <div class="project-complete mb-30">
-                                    <div class="project-complete__icon">
-                                        <i class="flaticon-charity"></i>
-                                    </div>
-                                    <div class="project-complete__content">
-                                        <h5>We Complate 15000+ Project</h5>
-                                        <span>Donet for charity</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="image mt-65 rmt-15 rel">
-                                    <img src="{{asset('frontendAsset')}}/img/about/about2.jpg" alt="About">
-                                    <div class="experiences-years">
-                                        <span class="experiences-years__number">25</span>
-                                        <span class="experiences-years__text">Years Experiences</span>
-                                    </div>
-                                </div>
-                                <div class="image">
-                                    <img src="{{asset('frontendAsset')}}/img/about/about3.jpg" alt="About">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-content-part rmt-65">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="">
                         <div class="section-title mb-60">
                             <span class="section-title__subtitle mb-10">About us</span>
-                            <h2>Check what makes us different <span>than others</span></h2>
+                            <h2>{{$about->title ?? ''}}</h2>
                         </div>
-                        <p>There are many variations of passages of orem Ipsum available, but the majority have suffered
-                            alteration in some form, by cted ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                            usmod mponcid idunt ut labore et dolore magna aliqua.</p>
-                        <div class="counter-item counter-text-wrap mt-30">
-                            <div class="counter-item__icon"><i class="flaticon-solidarity"></i></div>
-                            <div class="counter-item__content">
-                                <span class="count-text" data-speed="3000" data-stop="876000">0</span>
-                                <span class="counter-title">Raised by 78,000 people in one year</span>
-                            </div>
-                        </div>
-                        <div class="counter-item counter-text-wrap">
-                            <div class="counter-item__icon counter-item__icon--green"><i class="flaticon-help"></i>
-                            </div>
-                            <div class="counter-item__content">
-                                <span class="count-text" data-speed="3000" data-stop="45000">0</span>
-                                <span class="counter-title">Volunteers are available to help you</span>
-                            </div>
-                        </div>
-                        <a class="btn ml-5 mt-25" href="#">Didcover more</a>
+                        <p>{{$about->description ?? ''}}</p>
                     </div>
                 </div>
             </div>
@@ -193,23 +143,25 @@
             </div>
             <div class="row justify-content-center">
                 @foreach($members as $member)
-                <div class="col-xl-4 col-sm-6">
-                    <div class="valunteer-item valunteer-item--green">
-                        <div class="valunteer-item__img">
-                            <img src="{{asset($member->image)}}" alt="Valunteer">
-                            <div class="share">
-                                <button><i class="flaticon-share"></i></button>
-                                <div class="share__socials">
-                                    <a href="mailto:{{$member->email}}"><i class="flaticon-google-plus-logo"></i></a>
-                                    <a href="tel:{{$member->mobile_no}}" class="phone"><i class="flaticon-phone-call"></i></a>
+                    @if($member !=null)
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="valunteer-item valunteer-item--green">
+                            <div class="valunteer-item__img">
+                                <img src="{{asset($member->image ?? '')}}" alt="Valunteer">
+                                <div class="share">
+                                    <button><i class="flaticon-share"></i></button>
+                                    <div class="share__socials">
+                                        <a href="mailto:{{$member->email}}"><i class="flaticon-google-plus-logo"></i></a>
+                                        <a href="tel:{{$member->mobile_no}}" class="phone"><i class="flaticon-phone-call"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="valunteer-item__designation">
-                            <h5>{{$member->full_name}}</h5>
+                            <div class="valunteer-item__designation">
+                                <h5>{{$member->full_name}}</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    @endif
                 @endforeach
             </div>
         </div>

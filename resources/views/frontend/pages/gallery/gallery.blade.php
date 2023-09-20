@@ -57,13 +57,11 @@
                     <div class="about-middle-images">
                         @foreach($galleries as $gallery)
                             <div class="video rel mx-3" style="position: relative;">
-                                <img src="{{asset($gallery->image)}}" alt="Video">
-                                <a class="video-play video-play--one" target="_blank"
-                                   href="{{asset($gallery->video_link)}}"
-                                   data-effect="mfp-zoom-in"
-                                   style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%);">
-                                    <i class="fa fa-play"></i>
-                                </a>
+{{--                                <img src="{{asset($gallery->image)}}" alt="Video">--}}
+                                <iframe class="video-play video-play--one" width="560" height="315" src="https://www.youtube.com/embed/-l3mLElCUBg?si=Biw46o47YioV43Ps"
+                                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+                                         picture-in-picture; web-share" allowfullscreen><i class="fa fa-play"></i>
+                                </iframe>
                             </div>
                         @endforeach
                     </div>

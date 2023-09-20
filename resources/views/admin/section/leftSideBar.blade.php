@@ -56,6 +56,11 @@
                 </a>
             </li>
             <li class=" nav-item">
+                <a class="d-flex align-items-center" href="{{route('blog.index')}}"><i data-feather='award'></i>
+                    <span class="menu-title text-truncate" data-i18n="Blog">Blog</span>
+                </a>
+            </li>
+            <li class=" nav-item">
                 <a class="d-flex align-items-center" href="{{route('gallery.index')}}"><i data-feather='image'></i>
                     <span class="menu-title text-truncate" data-i18n="Gallery">Gallery</span>
                 </a>

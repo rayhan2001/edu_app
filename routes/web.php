@@ -9,6 +9,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::resource('membership',MembershipController::class);
 Route::post('membership-action',[MembershipController::class,'membershipAction'])->name('membership.action');
 Route::get('gallerys',[GalleryController::class,'galleryFrontendView'])->name('gallery');
 Route::resource('contact',ContactController::class);
+Route::get('blogs',[BlogController::class,'blogFrontendView'])->name('blog');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -36,4 +39,5 @@ Route::middleware([
     Route::resource('settings',SettingController::class);
     Route::resource('home',HomeController::class);
     Route::resource('about',AboutController::class);
+    Route::resource('blog',BlogController::class);
 });

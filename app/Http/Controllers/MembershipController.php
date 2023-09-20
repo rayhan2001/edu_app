@@ -40,7 +40,6 @@ class MembershipController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
         $validator = $request->validate([
             'name' => 'required',
             'full_name' => 'required',

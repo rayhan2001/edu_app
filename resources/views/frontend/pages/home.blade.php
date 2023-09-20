@@ -183,75 +183,42 @@
                     <div class="section-title text-center mb-60">
                         <span class="section-title__subtitle mb-10">Our Blog Post</span>
                         <h2>Our Latest <span>News & Update</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem voluptatem obcaecati
-                            consectetur adipisicing</p>
                     </div>
                 </div>
             </div>
+            @php
+            use Carbon\Carbon;
+            @endphp
             <div class="row justify-content-center">
-                <div class="col-xl-4 col-md-6">
-                    <div class="blog-item">
-                        <div class="blog-item__img">
-                            <img src="{{asset('frontendAsset')}}/img/blog/blog1.jpg" alt="Blog">
-                            <div class="post-date">
-                                <b>13</b>
-                                <span>dec</span>
+                @foreach($blogs as $index => $blog)
+                    @php
+                        $date = Carbon::parse($blog->date);
+                        $day = $date->format('d');
+                        $month = $date->format('M');
+                    @endphp
+                    @if($index < 3)
+                    <div class="col-xl-4 col-md-6" style="height: 50%">
+                        <div class="blog-item">
+                            <div class="blog-item__img">
+                                @if($blog->image)
+                                <img src="{{asset($blog->image)}}" alt="Blog">
+                                @else
+                                <img src="{{asset('frontendAsset')}}/img/blog/blog1.jpg" alt="Blog">
+                                @endif
+                                <div class="post-date">
+                                    <b>{{$day}}</b>
+                                    <span>{{$month}}</span>
+                                </div>
+                            </div>
+                            <div class="blog-item__content">
+                                <h4>{{$blog->title}}</h4>
+                                <p>{{substr($blog->description,0,30)}}</p>
+                                <a href="{{route('blog')}}" class="read-more">Read More</a>
                             </div>
                         </div>
-                        <div class="blog-item__content">
-                            <ul class="blog-meta">
-                                <li><i class="flaticon-user"></i> <a href="#">Wade Warren</a></li>
-                                <li><i class="flaticon-bubble-chat"></i> <a href="#">05 Comment</a></li>
-                            </ul>
-                            <h4><a href="blog-details.html">tincidunt egeting semper</a></h4>
-                            <p>Maximus a augue. Nullam ante nunc poraretra are oullam fringill sem ealiquam
-                                suscipit.......</p>
-                            <a href="blog-details.html" class="read-more">Read More</a>
-                        </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="blog-item">
-                        <div class="blog-item__img">
-                            <img src="{{asset('frontendAsset')}}/img/blog/blog2.jpg" alt="Blog">
-                            <div class="post-date">
-                                <b>20</b>
-                                <span>dec</span>
-                            </div>
-                        </div>
-                        <div class="blog-item__content">
-                            <ul class="blog-meta">
-                                <li><i class="flaticon-user"></i> <a href="#">Wade Warren</a></li>
-                                <li><i class="flaticon-bubble-chat"></i> <a href="#">05 Comment</a></li>
-                            </ul>
-                            <h4><a href="blog-details.html">Aenean viverra rhoncus </a></h4>
-                            <p>Maximus a augue. Nullam ante nunc poraretra are oullam fringill sem ealiquam
-                                suscipit.......</p>
-                            <a href="blog-details.html" class="read-more">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="blog-item">
-                        <div class="blog-item__img">
-                            <img src="{{asset('frontendAsset')}}/img/blog/blog3.jpg" alt="Blog">
-                            <div class="post-date">
-                                <b>31</b>
-                                <span>dec</span>
-                            </div>
-                        </div>
-                        <div class="blog-item__content">
-                            <ul class="blog-meta">
-                                <li><i class="flaticon-user"></i> <a href="#">Wade Warren</a></li>
-                                <li><i class="flaticon-bubble-chat"></i> <a href="#">05 Comment</a></li>
-                            </ul>
-                            <h4><a href="blog-details.html">Donec vitae sapien libero</a></h4>
-                            <p>Maximus a augue. Nullam ante nunc poraretra are oullam fringill sem ealiquam
-                                suscipit.......</p>
-                            <a href="blog-details.html" class="read-more">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
         <img class="blog-shape-one top_image_bounce" src="{{asset('frontendAsset')}}/img/shapes/three-round-yellow.png" alt="Shape">

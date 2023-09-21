@@ -24,7 +24,7 @@
                     <a href="#about-section">About Us</a>
                 </li>
                 <li>
-                    <a href="#">Event & Programmer</a>
+                    <a href="{{route('event')}}">Event & Programmer</a>
                 </li>
                 <li>
                     <a href="{{ route('membership.create') }}">Membership</a>

@@ -73,9 +73,7 @@
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
 
-<!-- BEGIN: Footer-->
-@include('admin.section.footer')
-<!-- END: Footer-->
+
 
 
 <!-- BEGIN: Vendor JS-->

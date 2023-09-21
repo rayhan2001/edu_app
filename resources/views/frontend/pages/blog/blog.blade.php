@@ -57,8 +57,8 @@
                             <ul>
                                 @foreach($blogs as $index => $item)
                                     @php
-                                            $carbonDate = Carbon::parse($item->date);
-                                            $formattedDate = $carbonDate->format('d M, Y');
+                                        $carbonDate = Carbon::parse($item->date);
+                                        $formattedDate = $carbonDate->format('d M, Y');
                                     @endphp
                                     @if($index < 6)
                                     <li>

@@ -3,6 +3,9 @@
     Home
 @endsection
 @section('content')
+    @php
+        use Carbon\Carbon;
+    @endphp
     <!-- Hero Area start -->
     <div class="hero-area bgs-cover overlay pt-155 pb-170" style="background-image: url({{asset($home->image ?? '')}});">
         <div class="container container-1370">
@@ -37,7 +40,6 @@
     </div>
     <!-- About area end -->
 
-
     <!-- Our Event area start -->
     <div class="our-event-area pt-120 pb-95 rel z-1">
         <div class="container">
@@ -45,85 +47,36 @@
                 <div class="col-xl-6 col-lg-8 col-md-10">
                     <div class="section-title text-center mb-65">
                         <span class="section-title__subtitle mb-10">Our Event</span>
-                        <h3>Our <span>Upcoming Event</span></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem voluptatem obcaecati
-                            consectetur adipisicing</p>
+                        <h3>Our <span>Latest Event</span></h3>
                     </div>
                 </div>
             </div>
             <div class="row events-active">
-                <div class="col-xl-4 col-md-6 item">
-                    <div class="event-item">
-                        <img src="{{asset('frontendAsset')}}/img/events/event1.jpg" alt="Event">
-                        <div class="event-item__hover">
-                            <h4><a href="event-details.html">Free Medical Camping</a></h4>
-                            <ul>
-                                <li><i class="flaticon-time"></i> <span>Jan 18, 2013</span></li>
-                                <li><i class="flaticon-map"></i> <span>melbourne City</span></li>
-                            </ul>
+                @foreach($events as $index => $event)
+                    @php
+                        $carbonDate = Carbon::parse($event->date);
+                        $formattedDate = $carbonDate->format('d M, Y');
+                    @endphp
+                    @if($index < 6)
+                    <div class="col-xl-4 col-md-6 item">
+                        <div class="event-item">
+                            @if($event->image)
+                            <img src="{{asset($event->image)}}" alt="Event">
+                            @else
+                            <img src="{{asset('frontendAsset')}}/img/events/event1.jpg" alt="Event">
+                            @endif
+
+                            <div class="event-item__hover">
+                                <h4><a href="{{route('event.details',$event->id)}}">{{$event->title ?? ''}}</a></h4>
+                                <ul>
+                                    <li><i class="flaticon-time"></i> <span>{{$formattedDate ?? ''}}</span></li>
+                                    <li><i class="flaticon-map"></i> <span>{{$event->upcoming_event ?? ''}}</span></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-md-6 item">
-                    <div class="event-item">
-                        <img src="{{asset('frontendAsset')}}/img/events/event2.jpg" alt="Event">
-                        <div class="event-item__hover">
-                            <h4><a href="event-details.html">Free Medical Camping</a></h4>
-                            <ul>
-                                <li><i class="flaticon-time"></i> <span>Jan 18, 2013</span></li>
-                                <li><i class="flaticon-map"></i> <span>melbourne City</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 item">
-                    <div class="event-item">
-                        <img src="{{asset('frontendAsset')}}/img/events/event3.jpg" alt="Event">
-                        <div class="event-item__hover">
-                            <h4><a href="event-details.html">Free Medical Camping</a></h4>
-                            <ul>
-                                <li><i class="flaticon-time"></i> <span>Jan 18, 2013</span></li>
-                                <li><i class="flaticon-map"></i> <span>melbourne City</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 item">
-                    <div class="event-item">
-                        <img src="{{asset('frontendAsset')}}/img/events/event5.jpg" alt="Event">
-                        <div class="event-item__hover">
-                            <h4><a href="event-details.html">Free Medical Camping</a></h4>
-                            <ul>
-                                <li><i class="flaticon-time"></i> <span>Jan 18, 2013</span></li>
-                                <li><i class="flaticon-map"></i> <span>melbourne City</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 item">
-                    <div class="event-item">
-                        <img src="{{asset('frontendAsset')}}/img/events/event6.jpg" alt="Event">
-                        <div class="event-item__hover">
-                            <h4><a href="event-details.html">Free Medical Camping</a></h4>
-                            <ul>
-                                <li><i class="flaticon-time"></i> <span>Jan 18, 2013</span></li>
-                                <li><i class="flaticon-map"></i> <span>melbourne City</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 item">
-                    <div class="event-item">
-                        <img src="{{asset('frontendAsset')}}/img/events/event4.jpg" alt="Event">
-                        <div class="event-item__hover">
-                            <h4><a href="event-details.html">Free Medical Camping</a></h4>
-                            <ul>
-                                <li><i class="flaticon-time"></i> <span>Jan 18, 2013</span></li>
-                                <li><i class="flaticon-map"></i> <span>melbourne City</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -186,9 +139,6 @@
                     </div>
                 </div>
             </div>
-            @php
-            use Carbon\Carbon;
-            @endphp
             <div class="row justify-content-center">
                 @foreach($blogs as $index => $blog)
                     @php

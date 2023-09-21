@@ -61,6 +61,11 @@
                 </a>
             </li>
             <li class=" nav-item">
+                <a class="d-flex align-items-center" href="{{route('event.index')}}"><i data-feather='calendar'></i>
+                    <span class="menu-title text-truncate" data-i18n="Event">Event</span>
+                </a>
+            </li>
+            <li class=" nav-item">
                 <a class="d-flex align-items-center" href="{{route('gallery.index')}}"><i data-feather='image'></i>
                     <span class="menu-title text-truncate" data-i18n="Gallery">Gallery</span>
                 </a>

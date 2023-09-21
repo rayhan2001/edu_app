@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::post('membership-action',[MembershipController::class,'membershipAction']
 Route::get('gallerys',[GalleryController::class,'galleryFrontendView'])->name('gallery');
 Route::resource('contact',ContactController::class);
 Route::get('blogs',[BlogController::class,'blogFrontendView'])->name('blog');
+Route::get('events',[EventController::class,'eventFrontendView'])->name('event');
+Route::get('events/{id}',[EventController::class,'eventDetails'])->name('event.details');
 
 Route::middleware([
     'auth:sanctum',
@@ -40,4 +43,5 @@ Route::middleware([
     Route::resource('home',HomeController::class);
     Route::resource('about',AboutController::class);
     Route::resource('blog',BlogController::class);
+    Route::resource('event',EventController::class);
 });

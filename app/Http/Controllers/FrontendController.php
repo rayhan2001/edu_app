@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Blog;
+use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Home;
 use App\Models\Membership;
@@ -19,6 +20,7 @@ class FrontendController extends Controller
         $members = Membership::all();
         $about = About::orderBy('id', 'desc')->first();
         $blogs = Blog::orderBy('id', 'desc')->get();
-        return view('frontend.pages.home',compact('home', 'about','setting','galleries','members','blogs'));
+        $events = Event::all();
+        return view('frontend.pages.home',compact('home', 'about','setting','galleries','members','blogs','events'));
     }
 }

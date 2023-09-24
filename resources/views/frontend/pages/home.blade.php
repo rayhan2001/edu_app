@@ -30,7 +30,7 @@
                     <div class="">
                         <div class="section-title mb-60">
                             <span class="section-title__subtitle mb-10">About us</span>
-                            <h2>{{$about->title ?? ''}}</h2>
+                            <h4>{{$about->title ?? ''}}</h4>
                         </div>
                         <p>{{$about->description ?? ''}}</p>
                     </div>

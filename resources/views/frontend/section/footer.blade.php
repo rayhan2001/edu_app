@@ -23,13 +23,13 @@
                     <div class="d-flex">
                         <ul style="margin-right: 30px">
                             <li><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Event & Programmer</a></li>
+                            <li><a href="#about-section">About</a></li>
+                            <li><a href="{{route('event')}}">Event & Programmer</a></li>
                             <li><a href="{{route('membership.create')}}">Membership</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{route('blog')}}">Blog</a></li>
                         </ul>
                         <ul style="margin-left: 50px">
-                            <li><a href="#">Notice</a></li>
+                            <li><a href="{{route('notice')}}">Notice</a></li>
                             <li><a href="#">Upcoming Event</a></li>
                             <li><a href="#">Previous Event</a></li>
                             <li><a href="{{route('gallery')}}">Gallery</a></li>

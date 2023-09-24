@@ -125,6 +125,7 @@
                 contentType: false,
                 cache: false,
                 processData: false,
+                dataType: "json",
                 success: function (response) {
                     toastr.success('Event Add Successfully');
                     $(location).prop('href', '{{route('event.index')}}');

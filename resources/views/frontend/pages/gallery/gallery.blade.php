@@ -48,27 +48,15 @@
     <!-- Our Event area end -->
 
 
-    <!-- About us area start -->
-    <div class="about-us-two">
+    <div class="our-events-slider pt-120 pb-80 rel z-1">
         <div class="container">
-            <div class="col-xl-12">
-                <div class="about-us-content-part mb-50">
-                    <hr class="mt-40">
-                    <div class="about-middle-images">
-                        @foreach($galleries as $gallery)
-                            <div class="video rel mx-3" style="position: relative;">
-{{--                                <img src="{{asset($gallery->image)}}" alt="Video">--}}
-                                <iframe class="video-play video-play--one" width="560" height="315" src="https://www.youtube.com/embed/-l3mLElCUBg?si=Biw46o47YioV43Ps"
-                                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
-                                         picture-in-picture; web-share" allowfullscreen><i class="fa fa-play"></i>
-                                </iframe>
-                            </div>
-                        @endforeach
-                    </div>
-                    <hr>
+            <div class="events-slider-active">
+                @foreach($galleries as $gallery)
+                <div class="event-item-three">
+                    <iframe width="560" height="315" src="{{ $gallery->video_link }}?privacy=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
-    <!-- About us area end -->
 @endsection

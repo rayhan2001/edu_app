@@ -85,6 +85,7 @@
                 contentType: false,
                 cache: false,
                 processData: false,
+                dataType: "json",
                 success: function (response) {
                     toastr.success('Home Content Add Successfully');
                     $(location).prop('href', '{{route('home.index')}}');

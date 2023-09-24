@@ -33,7 +33,7 @@
                     <a href="#">Resource</a>
                     <ul class="sub-menu">
                         <li><a href="{{route('blog')}}">Blog</a></li>
-                        <li><a href="#">Notice</a></li>
+                        <li><a href="{{route('notice')}}">Notice</a></li>
                         <li><a href="#">Upcoming Event</a></li>
                         <li><a href="#">Previous Event</a></li>
                     </ul>

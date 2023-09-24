@@ -21,6 +21,15 @@ class BlogController extends Controller
         $blogs = Blog::orderBy('id', 'desc')->get();
         return view('frontend.pages.blog.blog',compact('setting','galleries','blog','blogs'));
     }
+
+    public function blogDetails($id){
+        $galleries = Gallery::all();
+        $setting = Setting::orderBy('id', 'desc')->first();
+        $blog = Blog::find($id);
+        $blogs = Blog::orderBy('id', 'desc')->get();
+        return view('frontend.pages.blog.blog_details',compact('setting','galleries','blog','blogs'));
+    }
+
     public function index()
     {
         $blogs = Blog::all();

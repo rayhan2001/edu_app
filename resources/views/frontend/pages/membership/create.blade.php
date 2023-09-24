@@ -33,14 +33,14 @@
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" id="name" name="name" class="form-control" placeholder="Your Name">
-                                    <div class="name_error text-danger"></div>
+                                    <span id="name_error" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="full_name">Full Name</label>
                                     <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Your Full Name">
-                                    <div id="" class="full_name_error text-danger"></div>
+                                    <div id="full_name_error" class="text-danger"></div>
                                 </div>
                             </div>
                         </div>
@@ -216,9 +216,12 @@
                 contentType: false,
                 cache: false,
                 processData: false,
+                dataType: "json",
                 success: function (response) {
+                    console.log(response);
                     toastr.success('Membership Request Send Successfully');
                     $('membershipForm')[0].reset()
+                    window.location.reload();
                     $('#submit-button').attr("disabled", false);
                     $('#submit-button').html("Submit");
                 },

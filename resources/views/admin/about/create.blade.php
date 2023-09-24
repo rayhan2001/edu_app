@@ -66,6 +66,7 @@
                 contentType: false,
                 cache: false,
                 processData: false,
+                dataType: "json",
                 success: function (response) {
                     toastr.success('About Content Add Successfully');
                     $(location).prop('href', '{{route('about.index')}}');

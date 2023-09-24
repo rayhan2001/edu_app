@@ -115,7 +115,7 @@
                         <div class="contact-info__icon"><i class="flaticon-pin"></i></div>
                         <h5>Offce address</h5>
                         <div class="contact-info__text">
-                            2118 Thornridge Cir. Syracuse <br>Connecticut 35624
+                            Dhaka <br>Bangladesh
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.admin_app')
 @section('title')
-    Add Blog
+    Add Notice
 @endsection
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
@@ -8,43 +8,27 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card p-3 shadow-sm rounded" style="border: none;">
-                    <div class="card-title">Add Blog</div>
-                    <form method="post" id="blogForm">
+                    <div class="card-title">Add Notice</div>
+                    <form method="post" id="noticeForm" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="customFile">Image</label>
-                                    <div class="custom-file">
-                                        <input type="file" name="image" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Choose image</label>
-                                        <span id="image_error" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="title">Title</label>
                                     <input type="text" id="title" name="title" class="form-control" placeholder="Your Title">
                                     <span id="title_error" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="date">Date</label>
-                                    <input type="date" id="date" name="date" class="form-control" placeholder="Your Title">
-                                    <span id="date_error" class="text-danger"></span>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea name="description" id="description" class="form-control" rows="3" placeholder="Describe Here..."></textarea>
-                                    <span id="description_error" class="text-danger"></span>
+                                    <label for="customFile">Image</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="image" class="custom-file-input" id="customFile" required>
+                                        <label class="custom-file-label" for="customFile">Choose image</label>
+                                        <span id="image_error" class="text-danger"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -77,10 +61,8 @@
 
             var data = new FormData();
             data.append('_token', "{{ csrf_token() }}");
-            data.append('image', $('input[type=file]')[0].files[0]);
             data.append('title', document.getElementById("title").value);
-            data.append('date', document.getElementById("date").value);
-            data.append('description', document.getElementById("description").value);
+            data.append('image', $('input[type=file]')[0].files[0]);
 
             $.ajaxSetup({
                 headers: {
@@ -89,7 +71,7 @@
             });
             $.ajax({
                 type: "POST",
-                url: "{{route('blog.store')}}",
+                url: "{{route('notice.store')}}",
                 data: data,
                 mimeType: 'multipart/form-data',
                 contentType: false,
@@ -97,8 +79,8 @@
                 processData: false,
                 dataType: "json",
                 success: function (response) {
-                    toastr.success('Blog Add Successfully');
-                    $(location).prop('href', '{{route('blog.index')}}');
+                    toastr.success('Notice Add Successfully');
+                    $(location).prop('href', '{{route('notice.index')}}');
                     $('#submit-button').attr("disabled", false);
                     $('#submit-button').html("Submit");
                 },
@@ -108,15 +90,10 @@
                     }else{
                         $('#title_error').text('');
                     }
-                    if(error.responseJSON.errors.date){
-                        $('#date_error').text(error.responseJSON.errors.date);
+                    if(error.responseJSON.errors.image){
+                        $('#image_error').text(error.responseJSON.errors.image);
                     }else{
-                        $('#date_error').text('');
-                    }
-                    if(error.responseJSON.errors.description){
-                        $('#description_error').text(error.responseJSON.errors.description);
-                    }else{
-                        $('#description_error').text('');
+                        $('#image_error').text('');
                     }
                     $('#submit-button').attr("disabled", false);
                     $('#submit-button').html("Submit");

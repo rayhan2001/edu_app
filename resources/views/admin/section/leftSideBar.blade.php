@@ -76,6 +76,11 @@
                 </a>
             </li>
             <li class=" nav-item">
+                <a class="d-flex align-items-center" href="{{route('notice.index')}}"><i data-feather='info'></i>
+                    <span class="menu-title text-truncate" data-i18n="Notice">Notice</span>
+                </a>
+            </li>
+            <li class=" nav-item">
                 <a class="d-flex align-items-center" href="#"><i data-feather='settings'></i>
                     <span class="menu-title text-truncate" data-i18n="settings">Settings</span>
                 </a>

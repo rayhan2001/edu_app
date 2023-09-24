@@ -86,6 +86,7 @@
                     data: formData,
                     processData: false,
                     contentType: false,
+                    dataType: "json",
                     success: function(response) {
                         if (response.status==200){
                             toastr.success('HBlog Update Successfully.');

@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\NoticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,11 @@ Route::post('membership-action',[MembershipController::class,'membershipAction']
 Route::get('gallerys',[GalleryController::class,'galleryFrontendView'])->name('gallery');
 Route::resource('contact',ContactController::class);
 Route::get('blogs',[BlogController::class,'blogFrontendView'])->name('blog');
+Route::get('blog-details/{id}',[BlogController::class,'blogDetails'])->name('blog.details');
 Route::get('events',[EventController::class,'eventFrontendView'])->name('event');
 Route::get('events/{id}',[EventController::class,'eventDetails'])->name('event.details');
+Route::get('notices',[NoticeController::class,'noticeFrontendView'])->name('notice');
+Route::get('/notices/{notice}/download', [NoticeController::class,'download'])->name('notices.download');
 
 Route::middleware([
     'auth:sanctum',
@@ -44,4 +48,5 @@ Route::middleware([
     Route::resource('about',AboutController::class);
     Route::resource('blog',BlogController::class);
     Route::resource('event',EventController::class);
+    Route::resource('notice',NoticeController::class);
 });

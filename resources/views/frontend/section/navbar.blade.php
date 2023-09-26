@@ -34,8 +34,8 @@
                     <ul class="sub-menu">
                         <li><a href="{{route('blog')}}">Blog</a></li>
                         <li><a href="{{route('notice')}}">Notice</a></li>
-                        <li><a href="#">Upcoming Event</a></li>
-                        <li><a href="#">Previous Event</a></li>
+                        <li><a href="{{route('up.event')}}">Upcoming Event</a></li>
+                        <li><a href="{{route('previous.event')}}">Previous Event</a></li>
                     </ul>
                 </li>
                 <li>

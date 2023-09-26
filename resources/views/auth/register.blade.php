@@ -114,24 +114,9 @@
                                         <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input class="custom-control-input" id="register-privacy-policy" type="checkbox" tabindex="4" />
-                                        <label class="custom-control-label" for="register-privacy-policy">I agree to<a href="javascript:void(0);">&nbsp;privacy policy & terms</a></label>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block" tabindex="5">Sign up</button>
+                                <button type="submit" class="btn btn-primary btn-block mt-3" tabindex="5">Sign up</button>
                             </form>
                             <p class="text-center mt-2"><span>Already have an account?</span><a href="{{ route('login') }}"><span>&nbsp;Sign in instead</span></a></p>
-                            <div class="divider my-2">
-                                <div class="divider-text">or</div>
-                            </div>
-                            <div class="auth-footer-btn d-flex justify-content-center">
-                                <a class="btn btn-facebook" href="javascript:void(0)"><i data-feather="facebook"></i></a>
-                                <a class="btn btn-twitter white" href="javascript:void(0)"><i data-feather="twitter"></i></a>
-                                <a class="btn btn-google" href="javascript:void(0)"><i data-feather="mail"></i></a>
-                                <a class="btn btn-github" href="javascript:void(0)"><i data-feather="github"></i></a>
-                            </div>
                         </div>
                     </div>
                     <!-- /Register-->

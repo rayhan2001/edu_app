@@ -74,38 +74,6 @@
                                 </li>
                             </ul>
                         </div>
-                        @php
-                        $events = \App\Models\Event::where('upcoming_event',1)->get();
-                        @endphp
-                        <div class="widget widget-upcoming-event">
-                            <h5 class="widget-title">Upcoming Event</h5>
-                            <ul>
-                                @foreach($events as $index => $item)
-                                    @php
-                                        $carbonDate = Carbon::parse($item->date);
-                                        $formattedDate = $carbonDate->format('d M, Y');
-                                    @endphp
-                                    @if($index < 6)
-                                    <li>
-                                        <div class="image">
-                                            @if($item->image)
-                                            <img src="{{asset($item->image)}}" alt="Event">
-                                            @else
-                                            <img src="{{asset('frontendAsset')}}/img/widgets/event1.jpg" alt="Event">
-                                            @endif
-                                        </div>
-                                        <div class="content">
-                                            <h6>{{$event->title}}</h6>
-                                            <ul class="blog-meta">
-                                                <li><i class="flaticon-map"></i>{{$item->event_venue}}</li>
-                                                <li><i class="flaticon-calendar"></i>{{$formattedDate}}</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>

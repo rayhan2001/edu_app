@@ -53,7 +53,7 @@
             <div class="events-slider-active">
                 @foreach($galleries as $gallery)
                 <div class="event-item-three">
-                    <iframe width="560" height="315" src="{{ $gallery->video_link }}?privacy=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="{{$gallery->video_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
                 @endforeach
             </div>

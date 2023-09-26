@@ -27,6 +27,22 @@ class EventController extends Controller
         $event = Event::find($id);
         return view('frontend.pages.event.event_details',compact('galleries','setting','event'));
     }
+
+    public function upEventFrontendView(){
+        $galleries = Gallery::all();
+        $setting = Setting::orderBy('id', 'desc')->first();
+        $events = Event::where('upcoming_event',1)->get();
+        return view('frontend.pages.event.upcoming_event',compact('galleries','setting','events'));
+    }
+
+    public function previousEventFrontendView(){
+        $galleries = Gallery::all();
+        $setting = Setting::orderBy('id', 'desc')->first();
+        $events = Event::where('date', '<=', now()->subDays(3))->get();
+        return view('frontend.pages.event.previous_event',compact('galleries','setting','events'));
+    }
+
+
     public function index()
     {
         $events = Event::all();

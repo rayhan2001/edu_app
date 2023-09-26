@@ -32,6 +32,8 @@ Route::resource('contact',ContactController::class);
 Route::get('blogs',[BlogController::class,'blogFrontendView'])->name('blog');
 Route::get('blog-details/{id}',[BlogController::class,'blogDetails'])->name('blog.details');
 Route::get('events',[EventController::class,'eventFrontendView'])->name('event');
+Route::get('upcoming-event',[EventController::class,'upEventFrontendView'])->name('up.event');
+Route::get('previous-event',[EventController::class,'previousEventFrontendView'])->name('previous.event');
 Route::get('events/{id}',[EventController::class,'eventDetails'])->name('event.details');
 Route::get('notices',[NoticeController::class,'noticeFrontendView'])->name('notice');
 Route::get('/notices/{notice}/download', [NoticeController::class,'download'])->name('notices.download');

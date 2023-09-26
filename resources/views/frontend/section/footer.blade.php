@@ -30,8 +30,8 @@
                         </ul>
                         <ul style="margin-left: 50px">
                             <li><a href="{{route('notice')}}">Notice</a></li>
-                            <li><a href="#">Upcoming Event</a></li>
-                            <li><a href="#">Previous Event</a></li>
+                            <li><a href="{{route('up.event')}}">Upcoming Event</a></li>
+                            <li><a href="{{route('previous.event')}}">Previous Event</a></li>
                             <li><a href="{{route('gallery')}}">Gallery</a></li>
                             <li><a href="{{route('contact.create')}}">Contact Us</a></li>
                         </ul>
